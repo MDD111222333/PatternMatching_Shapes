@@ -1,16 +1,21 @@
-# C_Sharp_PatternMatching_Shapes
+# C_Sharp_PatternMatching_Records
 
-## C#_PatternMatching_Shapes
+## C#_PatternMatching_Records
 
-### Задание «Контрольная точка №15 — паттерн-матчинг»
+### Задание «Геометрические фигуры через записи»
 
-Вариант 1. Классификация фигур
-1. Используйте классы Circle { double Radius }, Rectangle { double Width, double Height }.
-2. Метод string Classify(object shape), возвращающий строку через switch-выражение.
-3. Свойственный паттерн: Circle { Radius: 0 } → "точка".
-4. Паттерн отношения внутри свойственного: Circle { Radius: > 100 } → "огромный круг".
-5. when-условие: для Rectangle с Width == Height → "квадрат".
-6. Завершающая ветка _ для всех остальных случаев.
+Вариант 1. Геометрические фигуры через записи
+1. public record Point(double X, double Y);
+2. public record Circle(Point Center, double Radius);
+3. public record Rectangle(Point TopLeft, Point BottomRight);
+4. Метод string Classify(object shape) через switch-выражение:
+   - Circle { Center: { X: 0, Y: 0 } } → "окружность в начале координат".
+   - Circle { Radius: 0 } → "вырожденная окружность (точка)".
+   - Circle c → строка с радиусом.
+   - Rectangle r when r.TopLeft == r.BottomRight → "вырожденный прямоугольник (точка)".
+   - Rectangle r → строка с размерами.
+   - _ → "неизвестная фигура".
+
 
 Результаты и проверочные ключи:
 <img width="1703" height="393" alt="изображение" src="https://github.com/user-attachments/assets/388ce34b-c8c9-4305-a2dc-fa57188b0ca9" />
